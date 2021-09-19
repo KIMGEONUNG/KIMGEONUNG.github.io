@@ -1,8 +1,6 @@
 # main links
 main:
-  - title: "Post"
-    url: /year-archive/
-  - title: "Paper Review"
-    url: /navi_paper_review/
-  - title: "Artwork"
+  - title: "Posts"
+    url: /collection-archive/
+  - title: "Artworks"
     url: /navi_artwork/

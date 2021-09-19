@@ -10,13 +10,13 @@
 # Review documentation to determine if you should use `theme` or `remote_theme`
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
-theme                  : "minimal-mistakes-jekyll"
+theme                    : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "COMputer & ARchitecture"
+title                    : "Computer & Architecture"
 title_separator          : "-"
 subtitle                 : "Questions for Architecture, Answers from Computer Science"
 name                     : "KIM GEON UNG"
@@ -103,7 +103,7 @@ analytics:
 author:
   name             : "KIM GEON UNG"
   avatar           : "/assets/images/me.jpg"
-  bio              : "Experienced and self-motivated software engineer having architecture domain knowledge. Fully interested in all kinds of programming related to architecture, city or building data manipulation and geometry algorithms."
+  bio              : "Fully interested in all kinds of programming related to architecture, city or building data manipulation and geometry algorithms."
   location         : "Republic of Korea"
   # email            : "saywooong@gmail.com"
   links:
@@ -273,6 +273,16 @@ compress_html:
     envs: development
 
 
+# Collections
+collections:
+  papers:
+    output: true
+    permalink: /:collection/:path/
+  tech:
+    output: true
+    permalink: /:collection/:path/
+
+
 # Defaults
 defaults:
   # _posts
@@ -286,3 +296,20 @@ defaults:
       comments: true
       share: true 
       related: true  
+  # _papers
+  - scope:
+      path: ""
+      type: papers
+    values:
+      layout: single
+      author_profile: true
+      share: true
+  # _tech
+  - scope:
+      path: ""
+      type: tech 
+    values:
+      layout: single
+      author_profile: true
+      share: true
+

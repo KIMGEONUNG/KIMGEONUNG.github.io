@@ -1,12 +1,6 @@
 ---
 layout: splash 
-
-classes:
-  - landing
-
-intro: 
-  - excerpt: "Nullam suscipit et nam"
-
+permalink: /artworks-archive/
 feature_row:
   - image_path: /assets/images/artworks/coex-render1.jpg
     title: ' '
@@ -21,6 +15,5 @@ feature_row:
   - image_path: /assets/images/artworks/tower-perspective.jpg
     title: ' '
 ---
-
 
 {% include feature_row %}

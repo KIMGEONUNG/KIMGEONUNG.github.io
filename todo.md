@@ -1,0 +1,3 @@
+- recent post for paper, tech
+- artwork visualization
+- footer change

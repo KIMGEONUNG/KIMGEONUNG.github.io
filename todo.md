@@ -1,4 +1,3 @@
 - update header image
-- artwork size reform
 - site icon
-- artwork meauseum
+- artwork model images

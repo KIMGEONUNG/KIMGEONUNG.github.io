@@ -14,6 +14,8 @@ feature_row:
     title: ' '
   - image_path: /assets/images/artworks/tower-perspective.jpg
     title: ' '
+  - image_path: /assets/images/artworks/exon-museum.jpg
+    title: ' '
 ---
 
 {% include feature_row %}

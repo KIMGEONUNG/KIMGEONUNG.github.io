@@ -1,3 +1,2 @@
-- recent post for paper, tech
-- artwork visualization
-- footer change
+- update header image
+- site icon

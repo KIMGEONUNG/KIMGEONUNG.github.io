@@ -1,14 +1,8 @@
 # main links
 main:
-  - title: "Posts"
-    url: https://kimgeonung.github.io
+  - title: "Post"
+    url: /year-archive/
   - title: "Paper Review"
-    url: https://kimgeonung.github.io
+    url: /navi_paper_review/
   - title: "Artwork"
-    url: https://kimgeonung.github.io
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+    url: /navi_artwork/

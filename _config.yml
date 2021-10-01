@@ -260,10 +260,13 @@ compress_html:
 
 # Collections
 collections:
-  papers:
+  Review:
     output: true
     permalink: /:collection/:path/
-  tech:
+  Tech:
+    output: true
+    permalink: /:collection/:path/
+  Experiment:
     output: true
     permalink: /:collection/:path/
 
@@ -284,7 +287,7 @@ defaults:
   # _papers
   - scope:
       path: ""
-      type: papers
+      type: Review 
     values:
       layout: single
       author_profile: true
@@ -292,9 +295,17 @@ defaults:
   # _tech
   - scope:
       path: ""
-      type: tech 
+      type: Tech 
     values:
       layout: single
       author_profile: true
       share: true
-
+  # _experiments
+  - scope:
+      path: ""
+      type: Experiment
+    values:
+      layout: single
+      classes: wide
+      author_profile: true
+      share: true

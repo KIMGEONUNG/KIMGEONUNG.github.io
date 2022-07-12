@@ -1,5 +1,7 @@
 # main links
 main:
+  - title: "CV"
+    url: /collection-archive/
   - title: "Posts"
     url: /collection-archive/
   - title: "Artworks"

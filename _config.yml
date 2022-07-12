@@ -16,11 +16,11 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Computer & Architecture"
+title                    : "ComAr"
 title_separator          : "-"
-subtitle                 : "Questions for Architecture, Answers from Computer Science"
-name                     : "KIM GEON UNG"
-description              : "An amazing website."
+subtitle                 : ""
+name                     : "Geonung Kim"
+description              : ""
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -59,7 +59,7 @@ reCaptcha:
 atom_feed:
   path                   : # blank (default) uses feed.xml
   hide                   : # true, false (default)
-search                   : # true, false (default)
+search                   : true
 search_full_content      : # true, false (default)
 search_provider          : # lunr (default), algolia, google
 algolia:
@@ -101,10 +101,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "KIM GEON UNG"
+  name             : "Geonung Kim"
   avatar           : "/assets/images/me2.jpg"
-  bio              : "Fully interested in all kinds of programming related to architecture, city or building data manipulation and geometry algorithms."
-  location         : "Republic of Korea"
+  bio              : "M.S. Student in POSTECH"
+  # location         : "Republic of Korea"
   # email            : "saywooong@gmail.com"
   links:
     - label: "GitHub"
@@ -266,9 +266,9 @@ collections:
   # Tech:
   #   output: true
   #   permalink: /:collection/:path/
-  Experiment:
-    output: true
-    permalink: /:collection/:path/
+  # Experiment:
+  #   output: true
+  #   permalink: /:collection/:path/
   Publications:
     output: true
     permalink: /:path/

@@ -260,16 +260,19 @@ compress_html:
 
 # Collections
 collections:
-  Review:
-    output: true
-    permalink: /:collection/:path/
-  Tech:
-    output: true
-    permalink: /:collection/:path/
+  # Review:
+  #   output: true
+  #   permalink: /:collection/:path/
+  # Tech:
+  #   output: true
+  #   permalink: /:collection/:path/
   Experiment:
     output: true
     permalink: /:collection/:path/
-
+  Publications:
+    output: true
+    permalink: /:path/
+    # permalink: /:collection/:path/
 
 # Defaults
 defaults:
@@ -284,22 +287,6 @@ defaults:
       comments: true
       share: true 
       related: true  
-  # _papers
-  - scope:
-      path: ""
-      type: Review 
-    values:
-      layout: single
-      author_profile: true
-      share: true
-  # _tech
-  - scope:
-      path: ""
-      type: Tech 
-    values:
-      layout: single
-      author_profile: true
-      share: true
   # _experiments
   - scope:
       path: ""

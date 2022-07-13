@@ -335,7 +335,7 @@ pre {
     margin-bottom: 1.5rem;
 }
 
-.videocaption {
+.figurecaption {
     display: flex;
     font-size: 16px;
     line-height: 1.5em;
@@ -491,53 +491,79 @@ h3.figtitle {
         </ul>
     </div>
    </div>
+
+   <h2 id="framework">
+    Framework
+   </h2>
+
+   <div class="l-page fig">
+       <div class="l-article">
+           <img src="/assets/bigcolor/framework.jpg" width="100%">
+       </div>
+       <div class="figurecaption">
+           <div>
+               <!-- <strong> Overall framework for BigColor</strong> -->
+           </div>
+       </div>
+   </div>
+   <p>
+   <i>BigColor</i> Network consists of a class-conditioned encoder and fine layers of
+       pretrained BigGAN generator. The key idea is to <i>use a spatial feature map</i> as
+latent code instead of spatially-flattened latent code of BigGAN, which
+   effectively transfers a structure information of an input image. Then, <i>jointly
+   training the encoder-generator model</i> enables us to learn the generative color
+prior with an enlarged representation space. Additionally, The randomlysampled enables generating multi-model solutions. The class label used in a
+feedforward can be estimated by an off-the-shelf classifier or be specified by
+a user.
+   </p>
+
    <h2 id="videos">
     Results
    </h2>
    <p>
-    The first two videos demonstrate...
+    <!-- The first two videos demonstrate... -->
    </p>
 
     <div class="l-page fig">
         <div class="l-article">
             <img src="/assets/bigcolor/teaser_2.png" width="100%">
         </div>
-        <div class="videocaption">
+        <div class="figurecaption">
             <div>
-                <strong> Figure 1: Black-and-white photography colorization </strong>
+                <strong> Figure 1: Black-and-white photography colorization with arbitrary resolution. </strong>
             </div>
         </div>
     </div>
     <p>
-    The following videos show ...
+    <!-- The following images show ... -->
     </p>
 
     <div class="l-page fig">
         <div class="l-article">
             <img src="/assets/bigcolor/multimodal.jpg" width="100%">
         </div>
-        <div class="videocaption">
+        <div class="figurecaption">
             <div>
-                <strong> Figure 2: Multi-modal solutions </strong>
+                <strong> Figure 2: Multi-modal solutions from a graysacale image. </strong>
             </div>
         </div>
     </div>
     <p>
-    The following videos show ...
+    <!-- The following images show ... -->
     </p>
 
     <div class="l-page fig">
         <div class="l-article">
             <img src="/assets/bigcolor/uncurate3.jpg" width="100%">
         </div>
-        <div class="videocaption">
+        <div class="figurecaption">
             <div>
-                <strong> Figure 3: Uncurated results </strong>
+                <strong> Figure 3: Uncurated colorization results. </strong>
             </div>
         </div>
     </div>
     <p>
-    The following videos show ...
+    <!-- The following images show ... -->
     </p>
 
    <h2 id="citation">

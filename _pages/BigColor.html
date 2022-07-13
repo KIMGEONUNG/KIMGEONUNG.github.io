@@ -3,13 +3,13 @@ layout: compress
 permalink: /bigcolor/
 ---
 
-<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <title>
-   BigColor
-  </title>
-  <style type="text/css">
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title> BigColor </title>
+
+    <style type="text/css">
    :root {
     --small-thumb-border-radius: 2px;
     --larger-thumb-border-radius: 3px;
@@ -43,7 +43,7 @@ body {
 .n-footer {
     display: grid;
     justify-items: stretch;
-    grid-template-columns: [screen-start] 8px [page-start kicker-start text-start gutter-start middle-start] 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr [text-end page-end gutter-end kicker-end middle-end] 8px [screen-end];
+    grid-template-columns: [screen-start] 8px [page-start kicker-start text-start gutter-start middle-start] 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr [text-end page-end gutter-end kicker-end middle-end] 8px [screen-end];
     grid-column-gap: 8px;
 }
 
@@ -64,7 +64,6 @@ body {
         grid-template-columns: [screen-start] 1fr [page-start kicker-start middle-start text-start] 45px 45px 45px 45px 45px 45px 45px 45px [ kicker-end text-end gutter-start] 45px [middle-end] 45px [page-end gutter-end] 1fr [screen-end];
         grid-column-gap: 16px;
     }
-
     .grid {
         grid-column-gap: 16px;
     }
@@ -82,7 +81,6 @@ body {
         grid-template-columns: [screen-start] 1fr [page-start kicker-start] 50px [middle-start] 50px [text-start kicker-end] 50px 50px 50px 50px 50px 50px 50px 50px [text-end gutter-start] 50px [middle-end] 50px [page-end gutter-end] 1fr [screen-end];
         grid-column-gap: 16px;
     }
-
     .grid {
         grid-column-gap: 16px;
     }
@@ -131,8 +129,9 @@ body {
     padding: 4rem 0 1.5rem;
 }
 
+/* if comment, width is fixed to the boundary*/
 .l-page {
-    grid-column: page;
+    grid-column: text;
 }
 
 .l-article {
@@ -465,18 +464,19 @@ h3.figtitle {
    </div>
   </div>
   <div class="n-article">
-   <div class="l-article">
-    <img src="/assets/bigcolor/teaser_1.png" width="100%">
-   </div>
-   <h2 id="abstract">
-    Abstract
-   </h2>
-   <p>
-    For realistic and vivid colorization, generative priors have recently been exploited. However, such generative priors often fail for in-the-wild complex images due to their limited representation space. In this paper, we propose BigColor, a novel colorization approach that provides vivid colorization for diverse in-the-wild images with complex structures. While previous generative priors are trained to synthesize both image structures and colors, we learn a generative color prior to focus on color synthesis given the spatial structure of an image. In this way, we reduce the burden of synthesizing image structures from the generative prior and expand its representation space to cover diverse images. To this end, we propose a BigGAN-inspired encoder-generator network that uses a spatial feature map instead of a spatially-flattened BigGAN latent code, resulting in an enlarged representation space. Our method enables robust colorization for diverse inputs in a single forward pass, supports arbitrary input resolutions, and provides multi-modal colorization results. We demonstrate that BigColor significantly outperforms existing methods especially on in-the-wild images with complex structures.
-   </p>
-   <h2 id="links">
-    Links
-   </h2>
+       <div class="l-article">
+           <img src="/assets/bigcolor/teaser_1.png" width="100%">
+       </div>
+
+       <h2 id="abstract"> Abstract </h2>
+       <p>
+        For realistic and vivid colorization, generative priors have recently been exploited. However, such generative priors often fail for in-the-wild complex images due to their limited representation space. In this paper, we propose BigColor, a novel colorization approach that provides vivid colorization for diverse in-the-wild images with complex structures. While previous generative priors are trained to synthesize both image structures and colors, we learn a generative color prior to focus on color synthesis given the spatial structure of an image. In this way, we reduce the burden of synthesizing image structures from the generative prior and expand its representation space to cover diverse images. To this end, we propose a BigGAN-inspired encoder-generator network that uses a spatial feature map instead of a spatially-flattened BigGAN latent code, resulting in an enlarged representation space. Our method enables robust colorization for diverse inputs in a single forward pass, supports arbitrary input resolutions, and provides multi-modal colorization results. We demonstrate that BigColor significantly outperforms existing methods especially on in-the-wild images with complex structures.
+       </p>
+
+       <h2 id="links">
+        Links
+       </h2>
+
    <div class="grid download-section">
     <div class="download-thumb">
      <a href="https://kimgeonung.github.io/bigcolor">
@@ -484,23 +484,11 @@ h3.figtitle {
      </a>
     </div>
     <div class="download-links">
-     <ul>
-      <li>
-       <a href="https://kimgeonung.github.io/bigcolor/">
-        Paper PDF
-       </a>
-      </li>
-      <li>
-       <a href="https://kimgeonung.github.io/bigcolor/">
-        arXiv
-       </a>
-      </li>
-      <li>
-       <a href="https://github.com/KIMGEONUNG/BigColor">
-        Code release on GitHub
-       </a>
-      </li>
-     </ul>
+        <ul>
+            <li> <a href="https://kimgeonung.github.io/bigcolor/"> Paper PDF </a> </li>
+            <li> <a href="https://kimgeonung.github.io/bigcolor/"> arXiv </a> </li>
+            <li> <a href="https://github.com/KIMGEONUNG/BigColor"> Code release on GitHub </a> </li>
+        </ul>
     </div>
    </div>
    <h2 id="videos">

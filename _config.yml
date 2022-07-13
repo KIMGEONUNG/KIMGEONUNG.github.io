@@ -271,8 +271,8 @@ collections:
   #   permalink: /:collection/:path/
   Publications:
     output: true
-    permalink: /:path/
-    # permalink: /:collection/:path/
+    # permalink: /:path/
+    permalink: /:collection/:path/
 
 # Defaults
 defaults:

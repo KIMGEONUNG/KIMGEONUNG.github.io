@@ -1,6 +1,6 @@
 ---
 layout: splash 
-permalink: /artworks-archive/
+permalink: /artworks/
 feature_row:
   - image_path: /assets/images/artworks/coex-render1.jpg
     title: ' '

@@ -1,0 +1,17 @@
+
+{% assign title = post.title %}
+{% assign author = post.author %}
+{% assign publication = post.publication %}
+
+{% assign teaser = post.header.teaser %}
+{% assign url_page = post.header.page %}
+
+
+<div class="{{ include.type | default: 'list' }}__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    <div class="archive__item-teaser">
+      <img src="{{ teaser }}" width=10px>
+    </div>
+    <a href="{{ url_page }}" rel="permalink">{{ title }}</a>
+  </article>
+</div>

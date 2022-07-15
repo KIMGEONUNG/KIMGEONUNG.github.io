@@ -6,12 +6,40 @@
 {% assign teaser = post.header.teaser %}
 {% assign url_page = post.header.page %}
 
+<style>
+.layout_paper {
+
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 2fr 3fr;
+  gap: 8px;
+}
+</style>
 
 <div class="{{ include.type | default: 'list' }}__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    <div class="archive__item-teaser">
-      <img src="{{ teaser }}" width=10px>
-    </div>
-    <a href="{{ url_page }}" rel="permalink">{{ title }}</a>
-  </article>
+    <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <table>
+            <tr>
+
+                <td class="exmaple">
+                    <div class="comparison-noslider noselect">
+                        <figure>
+                            <img class="blur-up ls-is-cached lazyloaded" src={{ teaser }}>
+                        </figure>
+                    </div>
+                </td>
+
+                <td class="table_pub">
+                    <div class="info_pub">
+                        <h2 class="archive__item-title_conf" itemprop="headline">
+                            <strong>{{ title }}</strong>
+                        </h2>
+                        <p class="info_author">{{ author }}</p>
+                        <p class="info_last"> {{ publication }} </p>
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+    </article>
 </div>

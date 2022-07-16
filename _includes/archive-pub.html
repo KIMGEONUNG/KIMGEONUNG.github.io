@@ -6,27 +6,24 @@
 {% assign teaser = post.header.teaser %}
 {% assign url_page = post.header.page %}
 
-<style>
-.layout_paper {
-
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 2fr 3fr;
-  gap: 8px;
-}
-</style>
-
 <div class="{{ include.type | default: 'list' }}__item">
-    <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-        <table>
-            <tr>
+    <article class="archive__item">
+        <table class="archive_pub">
+            <tbody>
 
-                <td class="exmaple">
-                    <div class="comparison-noslider noselect">
+            <tr>
+                <td>
+                    <div class="comparison-noslider">
                         <figure>
-                            <img class="blur-up ls-is-cached lazyloaded" src={{ teaser }}>
+                          {% if url_page %}
+                            <a href={{ url_page }} target="_blank">
+                          {% endif %}
+                                <img class="blur-up ls-is-cached lazyloaded dropshadow" src={{ teaser }}>
+                          {% if url_page %}
+                             </a>
+                          {% endif %}
                         </figure>
-                    </div>
+                    <div>
                 </td>
 
                 <td class="table_pub">
@@ -38,8 +35,9 @@
                         <p class="info_last"> {{ publication }} </p>
                     </div>
                 </td>
-
             </tr>
+
+            </tbody>
         </table>
     </article>
 </div>

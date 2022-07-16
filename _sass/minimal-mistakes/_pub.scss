@@ -1,11 +1,29 @@
+
+.archive_pub td.table_pub {
+    padding-left: 0.4em;
+    vertical-align: top;
+}
+
+.archive_pub h2 {
+  margin-top: 0.0em;
+  margin-bottom: 0.0em;
+}
+.archive_pub table {
+  margin-top: 0em;
+  margin-bottom: 0em;
+  padding-top: 0px; 
+  padding-bottom: 0px
+        
+}
+
 .archive_pub td {
     border-bottom: 0px;
-    border-bottom-width: 0px;
-    border-bottom-style: none;
-    border-right: 0px;
-    border-left: 0px;
-    border-top: 0px;
-    text-align: left;
+    // border-bottom-width: 0px;
+    // border-bottom-style: none;
+    // border-right: 0px;
+    // border-left: 0px;
+    // border-top: 0px;
+    text-align: center;
     vertical-align: top;
 }
 
@@ -15,9 +33,11 @@
     margin: 0 0 0 0;
 }
 
-img.dropshadow {
+.archive_pub figure {
+    margin: 0;
 }
 
 .archive_pub img {
     box-shadow: 0 1px 10px rgba(0,0,0, 0.3);
+    margin: 0;
 }

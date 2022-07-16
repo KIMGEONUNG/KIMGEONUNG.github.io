@@ -1,3 +1,2 @@
-- update header image
-- site icon
-- artwork model images
+- Change font
+- make pub dynamically

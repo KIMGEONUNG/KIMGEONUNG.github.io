@@ -114,7 +114,7 @@ author:
       icon: "fab fa-linkedin-in"
       url: "https://www.linkedin.com/in/kimgeonung"
     - label: "Scholar"
-      icon: "fab fa-google-scholar"
+      icon: "fab fa-google"
       url: "https://scholar.google.com/citations?user=UgL9yfwAAAAJ&hl=en"
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"

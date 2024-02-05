@@ -1,11 +1,6 @@
 ## Todo list
 
-- Construct "item framework"
-    - Project Page
-    - Paper
-    - Code
-    - Bitex
-- Add "TOP" tag
+- Add scholar link
 - Specify year
 - Change head image
 

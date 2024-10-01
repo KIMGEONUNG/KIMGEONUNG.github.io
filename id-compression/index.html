@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0041)https://layered-neural-atlases.github.io/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Layered Neural Atlases for Consistent Video Editing</title>
+  <link href="./assets/style.css" rel="stylesheet" type="text/css">
+
+
+  <meta name="description" content="Project page for &#39;Layered Neural Atlases for Consistent Video Editing.&#39;">
+</head>
+<body>
+  <p class="title">Layered Neural Atlases for Consistent Video Editing</p>
+  <p class="author">
+    <span class="author"><a target="_blank" href="https://ykasten.github.io/">Yoni Kasten</a>&nbsp;<sup>1</sup></span>
+    <span class="author"><a target="_blank" href="https://www.linkedin.com/in/dolev-ofri/">Dolev Ofri</a>&nbsp;<sup>1</sup></span>
+	<span class="author"><a target="_blank" href="http://www.oliverwang.info/">Oliver Wang</a>&nbsp;<sup>2</sup></span>
+    <span class="author"><a target="_blank" href="https://www.weizmann.ac.il/math/dekel/">Tali Dekel</a>&nbsp;<sup>1</sup></span>
+  </p>
+  <table border="0" align="center" class="affiliations" width="1200px">
+    <tbody align="center">
+      <tr>
+        <td style="text-align: right; width: 25%"><img src="./assets/wis_logo.jpg" height="48" alt=""></td>
+        <td style="text-align: left">&nbsp;<sup>1</sup>&nbsp;<a href="https://www.weizmann.ac.il/pages/">Weizmann Institute of Science</a></td>
+		<td style="text-align: right; width: 2%"><img src="./assets/logoadobe.png" height="48" alt=""></td>
+        <td style="text-align: left">&nbsp;<sup>2</sup>&nbsp;<a href="https://research.adobe.com/">Adobe Research</a></td>
+      </tr>
+    </tbody></table>
+    <table width="999" border="0" align="center" class="menu">
+      <tbody>
+        <tr>
+          <td align="center">| <a href="https://layered-neural-atlases.github.io/#paper">Paper</a> | <a href="https://layered-neural-atlases.github.io/#video">Video</a> | <a href="https://layered-neural-atlases.github.io/#sm">Supplementary Material</a> | <a href="https://layered-neural-atlases.github.io/#code">Code</a> |</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container">
+      &nbsp; &nbsp; <table width="1000" border="0" align="center">
+        <tbody>
+			<tr></tr>
+          <tr>
+			<td colspan="2" align="center"><img src="./assets/teaser_lucia.gif" width="700" alt=""></td>
+          </tr>
+			<tr>
+			<td colspan="4" align="center"><img src="./assets/teaser_kite-surf.gif" width="700" alt="" style="margin-top:10px"></td>
+          </tr>
+			
+			<tr></tr>
+        </tbody></table>
+		
+          <p><span class="section">Abstract</span> </p>
+          <p> hello
+          For each pixel in the video, our method estimates its corresponding 2D coordinate in each of the atlases, giving us a consistent parameterization of the video, along with an associated alpha (opacity) value. Importantly, we design our atlases to be interpretable and semantic, which facilitates easy and intuitive editing in the atlas domain, with minimal manual work required. Edits applied to a single 2D atlas (or input video frame) are automatically and consistently mapped back to the original video frames, while preserving occlusions, deformation, and other complex scene effects such as shadows and reflections. Our method employs a coordinate-based MLP representation for mappings, atlases, and alphas, which are jointly optimized on a per-video basis, using a combination of video reconstruction and regularization losses. By operating purely in 2D, our method does not require any prior 3D knowledge about scene geometry or camera poses, and can handle complex dynamic real world videos. We demonstrate various video editing applications, including texture mapping, video style transfer, image-to-video texture transfer, and segmentation/labeling propagation, all automatically produced by editing a single 2D atlas image.<br>
+          </p>
+          
+          <p class="section">&nbsp;</p>
+          <table width="200" border="0" align="center" id="video">
+            <tbody>
+              <tr>
+                <td><iframe width="900" height="506" src="./assets/aQhakPFC4oQ.html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="section" id="recresults">Video Decomposition</p>
+           Our model successfully manages to decompose the videos and produce foreground and background atlases which can be used later for editing. <table width="940" border="0">
+            <tbody>
+				<tr></tr>
+				
+				<tr>
+	            <td colspan="4" align="center"><img src="./assets/boat.gif" width="940" alt="" style="margin-top:10px"></td>
+	          </tr>
+				<tr>
+	            <td colspan="4" align="center"><img src="./assets/motorbike.gif" width="940" alt="" style="margin-top:30px"></td>
+	          </tr>
+				
+	      </tbody>
+          </table>
+		
+		<p class="section">&nbsp;</p>
+		<p class="section" id="edit-results">Editing examples</p>
+		After decomposition, we edit the atlas and use the learned mapping to apply the edit on all the frames. <table width="940" border="0">
+            <tbody>
+				<tr></tr>
+				<tr>
+				  <td colspan="4" align="center">  <img src="./assets/edited_kite-surf.gif" width="940" alt="" style="margin-top:10px"></td> 
+	          </tr>
+			  <tr>
+				  <td colspan="4" align="center">  <img src="./assets/edited_bicycle.gif" width="940" alt="" style="margin-top:10px"></td> 
+	          </tr>
+			  <tr>
+				  <td colspan="4" align="center">  <img src="./assets/edited_boat.gif" width="940" alt="" style="margin-top:10px"></td> 
+	          </tr>
+	      </tbody>
+          </table>
+		
+		<p class="section">&nbsp;</p>
+          <p class="section" id="paper">Paper</p>
+          <table width="940" border="0">
+            <tbody>
+              <tr>
+                <td height="100"><a target="_blank" href="https://arxiv.org/pdf/2109.11418.pdf"><img src="./assets/paper_preview.png" alt="" width="140" height="167"></a></td>
+                <td width="750"><p><b>Layered Neural Atlases for Consistent Video Editing</b><br>
+                  Yoni Kasten, Dolev Ofri, Oliver Wang, Tali Dekel<br>
+                  <em>SIGGRAPH Asia 2021.</em><br><br>
+                  [<a target="_blank" href="https://arxiv.org/pdf/2109.11418.pdf">paper</a>]</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="section">&nbsp;</p>
+          <p class="section" id="sm">Supplementary Material</p>
+          <table width="587" height="136" border="0">
+            <tbody>
+              <tr>
+                <td width="250"><img src="./assets/supp_figure.png" alt="" height="120"></td>
+                <td align="left">
+                  <p>[<a href="https://layered-neural-atlases.github.io/supplementary/index.html">supplementary page</a>]</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="section">&nbsp;</p>
+          <p class="section" id="code">Code</p>
+          <table border="0">
+            <tbody>
+              <tr>
+                <td width="80"><img src="./assets/github_logo.png" alt="" height="50"></td>
+                <td align="left">
+                  <p>[<a href="https://github.com/ykasten/layered-neural-atlases">code</a>]</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="section">&nbsp;</p>  
+		
+		<p class="section" id="external_coverage">External Coverage</p>
+          <table width="200" border="0" align="center">
+            <tbody>
+              <tr>
+                <td><p style="margin-top: 0">[<a href="https://www.youtube.com/watch?v=MCq0x01Jmi0">Two Minute Papers</a>]</p><iframe width="900" height="506" src="./assets/MCq0x01Jmi0.html" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+		
+          <p>&nbsp;</p>
+        </div>
+
+
+      
+
+</body></html>

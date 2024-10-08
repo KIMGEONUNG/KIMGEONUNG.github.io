@@ -2083,7 +2083,8 @@
           <span>Paper</span>
         </a>
 
-        <a href="https://github.com/KIMGEONUNG/ID-compression" class="external-link button is-normal is-rounded is-dark">
+        <a href="https://github.com/KIMGEONUNG/ID-compression"
+          class="external-link button is-normal is-rounded is-dark">
           <span class="icon">
             <i class="fab fa-github"></i> <!-- GitHub icon -->
           </span>
@@ -2092,14 +2093,14 @@
       </span>
     </div>
 
+    <div style="margin-top: 20px;">
+    </div>
 
-    <!-- <div class="row"> -->
-    <!--   <div class="col-md-8 col-md-offset-2"> -->
-    <!--     <video id="teaser-video-ours" width="100%" autoplay="" loop="" muted="" controls=""> -->
-    <!--       <source src="videos/teaser/wipe_4.mp4" type="video/mp4"> -->
-    <!--     </video> -->
-    <!--   </div> -->
-    <!-- </div> -->
+    <div>
+      <div class="col-md-8 col-md-offset-2">
+        <img src="myassets/teaser.png" width="100%" alt="">
+      </div>
+    </div>
 
 
     <div class="row">
@@ -2122,18 +2123,107 @@
     </div>
     <br>
 
+    <!-- method -->
+    <div>
+      <h3>
+        Method Overview
+      </h3>
+      <div>
+        <div class="col-md-8 col-md-offset-2">
+          <img src="myassets/framework.png" width="100%" alt="">
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
+        <div style="margin-top: 20px;"> </div>
+        <p class="text-justify">
+          Our compression method consists of two methods: depth-skip compression to effectively reduce model size and
+          time-step optimization to accelerate the diffusion sampling process.
+        </p>
+      </div>
+    </div>
+    <br>
+
+    <!-- depth-skip compression -->
+    <div>
+      <h3>
+        Depth-skip Compression Results
+      </h3>
+      <div>
+        <div class="col-md-8 col-md-offset-2">
+          <img src="myassets/depth-skip.png" width="100%" alt="">
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div style="margin-top: 20px;"> </div>
+        <p class="text-justify">
+          Our depth-skip pruning outperforms previous state-of-the-art methods, even without fine-tuning, by a
+          significant margin.
+        </p>
+      </div>
+    </div>
+    <br>
+
+
+    <!-- Time-step optimization -->
+    <div>
+      <h3>
+        Time-step Optimization Results
+      </h3>
+      <div>
+        <div class="col-md-8 col-md-offset-2">
+          <img src="myassets/timestep.png" width="100%" alt="">
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div style="margin-top: 20px;"> </div>
+        <p class="text-justify">
+          Our time-step optimization consistently shows better performance than the original uniform scheduling.
+        </p>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>
+          Citation
+        </h3>
+        <div class="form-group col-md-10 col-md-offset-1">
+          <p class="text-justify">
+            <textarea id="bibtex" class="form-control" readonly="" style="display: none;">
+              @article{kim2024task,
+              title={Task-Oriented Diffusion Model Compression},
+              author={Kim, Geonung and Kim, Beomsu and Park, Eunhyeok and Cho, Sunghyun},
+              journal={arXiv preprint arXiv:2401.17547},
+              year={2024}
+              }</textarea>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>
+          Acknowledgements
+        </h3>
         <p class="text-justify">
           The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a> and <a
             href="https://reconfusion.github.io/">ReconFusion</a>.
         </p>
       </div>
     </div>
+
   </div>
-
-
 </body>
 
 </html>

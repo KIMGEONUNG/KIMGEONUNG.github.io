@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="VideoFrom3D: 3D Scene Video Generation via Complementary Image and Video Diffusion Models">
+  <meta name="keywords" content="VideoFrom3D, Diffusion Model, video generation, 3D generation, Scene video generation, siggraph, siggraph-asia, GGI, SAG">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VideoFrom3D</title>
+
+  <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
+
+  <style>
+    .hr {width: 100%; height: 1px; margin: 48px 0; background-color: #d6dbdf;}
+    .beautiful-text {
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        background: linear-gradient(45deg, #ff4747, #ffa845, #ffd900, #BAFFC9, #76c2fc, #ae3cff); /* 파스텔 톤 그라데이션 */
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientAnimation 10s ease infinite;
+    }
+
+    /* 그라데이션 애니메이션 */
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .twentytwenty-container {
+      display: flex;
+      width: 100%;
+      height: 500px; /* 원하는 고정 높이 */
+      background-color: black;
+    }
+
+    .twentytwenty-container .video {
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .twentytwenty-container .video video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* 비율 유지하며 잘리지 않음 */
+      background-color: black;
+      display: block;
+    }
+
+
+  </style>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- custom css file  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/twentytwenty.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({            
+          tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}            
+      });
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop head">
+        <div class="columns is-centered">
+          <div class="column has-text-centered head">
+            <h1 class="beautiful-text main_title is-2 publication-title"> 
+              <span>VideoFrom3D</span>
+            </h1>
+            <h1 class="title is-3 publication-title"> 
+              3D Scene Video Generation via Complementary Image and Video Diffusion Models
+            </h1>
+  
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://kimgeonung.github.io/">Geonung Kim</a>&nbsp;&nbsp;</span> 
+              <span class="author-block">
+                <a href="https://cg.postech.ac.kr/">Janghyeok Han</a>&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a href="https://www.scho.pe.kr/">Sunghyun Cho</a></span> 
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">POSTECH CG Lab.</span>
+            </div>
+
+
+          <h1 class="title is-5 has-text-weight-normal has-text-centered" 
+              style="font-style: italic; margin-top: 1.5rem;">
+            SIGGRAPH-ASIA 2025
+          </h1>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./assets/paper.pdf" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./assets/SuppleDocument.pdf" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file"></i>
+                  </span>
+                  <span>Supple</span>
+                </a>
+              </span>
+
+              <span class="link-block"> 
+                <a href="https://github.com/KIMGEONUNG/VideoFrom3D" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <!-- arXiv Link. -->
+              <span class="link-block">
+                <a href="https://github.com/KIMGEONUNG/VideoFrom3D" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- Video Link. -->
+              <!-- <span class="link-block"> -->
+              <!--   <a href="https://www.youtube.com/watch?v=EaHrA9bcMSs" target="_blank" -->
+              <!--      class="external-link button is-normal is-rounded is-dark"> -->
+              <!--     <span class="icon"> -->
+              <!--         <i class="fab fa-youtube"></i> -->
+              <!--     </span> -->
+              <!--     <span>Video</span> -->
+              <!--   </a> -->
+              <!-- </span> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- teaser -->
+<section class="hero is-small" style="background-color: #fffbe6;">
+  <div class="hero-body">
+  <!-- <div id="carousel-demo" class="hero-carousel"> -->
+    <div class="container">
+
+      <p style="
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #444;
+        letter-spacing: 0.5px;
+      ">
+        Explore the videos: <span style="font-weight: 600; color: #222;">hover to play</span>, and <span style="font-weight: 600; color: #222;">slide to see 3D geometry vs Generated video</span>.
+      </p>
+
+      <!-- <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="1" data-loop="true"> -->
+      <!-- <div id="carouselExampleControls" class="carousel results-carousel" data-slides-to-show="1" data-loop="true"> -->
+      <div id="carouselExampleControls" class="carousel results-carousel" data-loop="true">
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">Spatown</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample013-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample013-teaser_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">Season transition</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample001-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample001-season_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">Non-photorealistic</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample002-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample002-nonphoto_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">Cocktail</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample005-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample005-cocktail_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">Indoor</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample006-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample006-indoor_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">Outdoor</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample012-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample012-outdoor_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">Indoor2Outdoor</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample014-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample014-indoor2outdoor_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">City</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample015-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample015-city_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">Mountain</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample016-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample016-mountain_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">School</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample017-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample017-school_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">Classroom</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample018-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample018-classroom_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
+            <div class="desc">Spatown (fire)</div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample013-mesh_vcodec.mp4" type="video/mp4">
+              </video> 
+            </div>
+            <div class="video">
+              <video muted loop="loop" width="100%">
+                <source src="./assets/videos/sample013-fire_vcodec.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+  </div>
+</section>
+
+
+<section class="teaser">
+  <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <!-- <div class="column is-four-fifths"> -->
+        <div class="column">
+          <div class="content main_title">
+            <br> <b>VideoFrom3D</b> synthesizes high-quality 3D scene videos from coarse geometry, a camera trajectory, and a reference image.
+          </div>
+          <div class="hr"></div>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+      <!-- <div class="column"> -->
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+          In this paper, we propose <b>VideoFrom3D</b>, a novel framework for synthesizing high-quality 3D scene videos from coarse geometry, a camera trajectory, and a reference image. Our approach streamlines the 3D graphic design workflow, enabling flexible design exploration and rapid production of deliverables. A straightforward approach to synthesizing a video from coarse geometry might condition a video diffusion model on geometric structure. However, existing video diffusion models struggle to generate high-fidelity results for complex scenes due to the difficulty of jointly modeling visual quality, motion, and temporal consistency. To address this, we propose <b>a generative framework that leverages the complementary strengths of image and video diffusion models</b>. Specifically, our framework consists of a <b>Sparse Anchor-view Generation (SAG)</b> and a <b>Geometry-guided Generative Inbetweening (GGI)</b> module. The SAG module generates high-quality, cross-view consistent anchor views using an image diffusion model, aided by Sparse Appearance-guided Sampling. Building on these anchor views, GGI module faithfully interpolates intermediate frames using a video diffusion model, enhanced by flow-based camera control and structural guidance. Notably, both modules operate without any paired dataset of 3D scene models and natural images, which is extremely difficult to obtain. Comprehensive experiments show that our method produces high-quality, style-consistent scene videos under diverse and challenging scenarios, outperforming simple and extended baselines.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-four-fifths"> -->
+      <div class="column">
+        <h2 class="title is-3">Generation Process</h2>
+        <div class="content has-text-justified">
+          <div class="column">
+            <img src="./assets/images/teaser.jpg" />
+          </div>
+          <p>
+The figure illustrates the overall framework of VideoFrom3D. (1) Users construct a scene using coarse geometry or 3D assets.
+(2) A camera trajectory and (3) a reference image are provided.
+(4) VideoFrom3D then generates a high-quality video reflecting the specified style, structure, and camera motion. 
+The synthesized video sequence shows consistent, high-quality visuals that reflect the input geometry and reference style, including challenging visual elements such as rising steam.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <!-- <div class="column is-four-fifths"> -->
+      <div class="column">
+        <h2 class="title is-3">Key Idea</h2>
+        <div class="content has-text-justified">
+          <div class="column">
+            <img src="./assets/images/pipeline_simple.png" />
+          </div>
+
+          <p>
+ A straightforward approach to synthesizing a video from coarse geometry might condition a video diffusion model on geometric structure. However, existing video diffusion models struggle to generate high-fidelity results for complex scenes due to the difficulty of jointly modeling visual quality, motion, and temporal consistency. To address this, we propose <b>a generative framework that leverages the complementary strengths of image and video diffusion models</b>. Specifically, our framework consists of a <b>Sparse Anchor-view Generation (SAG)</b> and a <b>Geometry-guided Generative Inbetweening (GGI)</b> module. The SAG module generates high-quality, cross-view consistent anchor views using an image diffusion model, aided by Sparse Appearance-guided Sampling. Building on these anchor views, GGI module faithfully interpolates intermediate frames using a video diffusion model, enhanced by flow-based camera control and structural guidance. 
+<!-- The figure illustrates the overall pipeline of VideoFrom3D, which consists of three stages. The preprocessing stage extracts edge maps as structural guidance $\{h_0, \dots, h_N\}$ and optical flows $\{ f_{0\rightarrow 1}, \dots, f_{N-1\rightarrow N}, f_{N \rightarrow 0}\}$ from an input 3D model and a camera trajectory, where $f_{i \rightarrow j}$ denotes the optical flow from view $i$ to view $j$. The structural guidance constrains the SAG and GGI modules to synthesize images accurately reflecting the geometry. $f_{N \rightarrow 0}$ is used by the SAG module to enforce cross-view consistency between $v_0$ and $v_N$, while $\{ f_{0\rightarrow 1}, \dots, f_{N-1\rightarrow N}\}$ is used by the GGI module to provide guidance on the camera trajectory. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper video. -->
+<div id="spotlight-video">
+  <div class="container is-max-desktop">
+      <div class="column">
+        <h2 class="title is-3">
+          <span class="a">VideoFrom3D</span>
+          <span class="b">Video</span>
+        </h2>
+        <div class="publication-video">
+          <iframe 
+            src="https://www.youtube.com/embed/e572dLWJusY?rel=0&showinfo=0" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen>
+          </iframe>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+    TMP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      @inproceedings{han2025dcvsr,
+        <!-- author       = {Janghyeok Han and Gyujin Sim and Geonung Kim and Hyun-Seung Lee and Kyuha Choi and Youngseok Han and Sunghyun Cho}, -->
+        <!-- title        = {{DC-VSR}: Spatially and Temporally Consistent Video Super-Resolution with Video Diffusion Prior}, -->
+        <!-- booktitle    = {Proceedings of the Special Interest Group on Computer Graphics and Interactive Techniques Conference Conference Papers (SIGGRAPH Conference Papers '25)}, -->
+        <!-- year         = {2025}, -->
+        <!-- month        = {August}, -->
+        <!-- pages        = {XX--YY}, -->
+        <!-- doi          = {10.1145/3721238.3730719}, -->
+        <!-- isbn         = {979-8-4007-1540-2/2025/08}, -->
+        <!-- address      = {Vancouver, BC, Canada}, -->
+        <!-- publisher    = {ACM}, -->
+      }</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <div class="columns is-centered"><p>
+            Thanks to <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">Nerfies</a> and <a href="https://shangchenzhou.com/projects/upscale-a-video/" target="_blank">Upscale-A-Video</a> for the website template. Thank you very much!
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+  <!-- custom js file  -->
+  <!-- <script defer src="./assets/js/fontawesome.all.min.js"></script> -->
+  <!-- <script src="./assets/js/bulma-carousel.patched.min.js"></script> -->
+  <script src="./assets/js/bulma-carousel.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script> -->
+  <!-- <script src="./assets/js/bulma-slider.min.js"></script> -->
+  <script src="./assets/js/index.js"></script>
+  <script src="./assets/js/jquery.event.move.js"></script>
+  <script src="./assets/js/jquery.twentytwenty.js"></script>
+  <script>
+  $(function(){
+    $(".twentytwenty-container").twentytwenty();
+
+  });
+
+  bulmaCarousel.attach('#carouselExampleControls', {
+    slidesToScroll: 1,
+    slidesToShow: 1,
+    navigationSwipe: false,
+    pagination: true,
+    navigation: true
+  });
+  </script>
+  <script>
+    // 모든 .item 선택
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+      const videos = item.querySelectorAll('video');
+
+      // 각 비디오가 완전히 로드되었는지 확인
+      videos.forEach(v => {
+        v.preload = "metadata";  // 미리 로드
+        v.muted = true;          // 자동 재생 정책 우회
+        v.dataset.ready = false;
+
+        v.addEventListener('canplaythrough', () => {
+          v.dataset.ready = true;
+        });
+      });
+
+      // 마우스 올렸을 때 재생
+      item.addEventListener('mouseenter', () => {
+        videos.forEach(v => {
+          if (v.dataset.ready === "true") {
+            v.play().catch(err => {
+              console.log('Video play failed:', err);
+            });
+          }
+        });
+      });
+
+      // 마우스 벗어나면 정지 + 처음으로 리셋
+      item.addEventListener('mouseleave', () => {
+        videos.forEach(v => {
+          v.pause();
+          v.currentTime = 0; // 리셋 원치 않으면 제거
+        });
+      });
+    });
+  </script>
+</body>
+</html>

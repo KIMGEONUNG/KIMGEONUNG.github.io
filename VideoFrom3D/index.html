@@ -208,12 +208,12 @@
           <div class="twentytwenty-container" data-orientation="horizontal" ratio="0.5625">
             <div class="desc">Spatown</div>
             <div class="video">
-              <video muted loop="loop" width="100%">
+              <video autoplay muted loop="loop" width="100%">
                 <source src="./assets/videos/sample013-mesh_vcodec.mp4" type="video/mp4">
               </video> 
             </div>
             <div class="video">
-              <video muted loop="loop" width="100%">
+              <video autoplay muted loop="loop" width="100%">
                 <source src="./assets/videos/sample013-teaser_vcodec.mp4" type="video/mp4">
               </video>
             </div>
@@ -553,7 +553,7 @@ The synthesized video sequence shows consistent, high-quality visuals that refle
   bulmaCarousel.attach('#carouselExampleControls', {
     slidesToScroll: 1,
     slidesToShow: 1,
-    navigationSwipe: true,
+    navigationSwipe: true, // not working
     pagination: true,
     navigation: true
   });
@@ -564,6 +564,20 @@ The synthesized video sequence shows consistent, high-quality visuals that refle
 
     items.forEach(item => {
       const videos = item.querySelectorAll('video');
+
+      //videos.forEach(v => {
+      //  v.preload = "auto";   // 전체 로드
+      //  v.muted = true;       // 자동재생 정책 우회
+      //  v.autoplay = true;    // autoplay 속성 부여
+      //  v.loop = true;        // 반복 재생 원하면
+      //  v.playsInline = true; // 모바일 인라인 재생
+
+      //  v.addEventListener('canplaythrough', () => {
+      //    v.play().catch(err => {
+      //      console.log('Autoplay failed:', err);
+      //    });
+      //  });
+      //});
 
       // 각 비디오가 완전히 로드되었는지 확인
       videos.forEach(v => {
@@ -587,13 +601,13 @@ The synthesized video sequence shows consistent, high-quality visuals that refle
         });
       });
 
-      // 마우스 벗어나면 정지 + 처음으로 리셋
-      item.addEventListener('mouseleave', () => {
-        videos.forEach(v => {
-          v.pause();
-          v.currentTime = 0; // 리셋 원치 않으면 제거
-        });
-      });
+      //// 마우스 벗어나면 정지 + 처음으로 리셋
+      //item.addEventListener('mouseleave', () => {
+      //  videos.forEach(v => {
+      //    v.pause();
+      //    v.currentTime = 0; // 리셋 원치 않으면 제거
+      //  });
+      //});
     });
   </script>
 </body>

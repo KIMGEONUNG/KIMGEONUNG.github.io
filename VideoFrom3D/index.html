@@ -558,28 +558,17 @@ The synthesized video sequence shows consistent, high-quality visuals that refle
     navigation: true
   });
 
-  
-  // 현재 슬라이드만 재생, 나머지는 정지+초기화
-  // function syncPlaybackByIndex(carousel, idxToPlay) {
-  //   carousel.slides.forEach(slideEl => {
-  //     const idx = parseInt(slideEl.dataset.sliderIndex, 10);
-  //     const vids = slideEl.querySelectorAll('video');
-  //     vids.forEach(v => {
-  //       if (idx === idxToPlay) {
-  //         // 현재 슬라이드 → 재생
-  //         if (v.readyState >= 2) {
-  //           v.play().catch(()=>{});
-  //         } else {
-  //           v.addEventListener('canplaythrough', () => v.play().catch(()=>{}), { once: true });
-  //         }
-  //       } else {
-  //         // 비현재 슬라이드 → 정지 + 처음으로
-  //         v.pause();
-  //         v.currentTime = 0;
-  //       }
-  //     });
-  //   });
-  // }
+  function setupLoopResync(slideEl) {
+    const vids = slideEl.querySelectorAll('video');
+    vids.forEach(v => {
+      v.loop = false; // 기본 loop 꺼두고 우리가 직접 관리
+      v.addEventListener('ended', () => {
+        // 모든 영상 동시에 리셋 & 재생
+        vids.forEach(x => { x.currentTime = 0; });
+        vids.forEach(x => { x.play().catch(()=>{}); });
+      });
+    });
+  }
 
   function syncPlaybackByIndex(carousel, idxToPlay) {
     carousel.slides.forEach(slideEl => {
@@ -587,14 +576,13 @@ The synthesized video sequence shows consistent, high-quality visuals that refle
       const vids = slideEl.querySelectorAll('video');
 
       if (idx === idxToPlay) {
-        // 현재 슬라이드: 모든 비디오 준비 상태를 확인
+        // 현재 슬라이드만 재생 (동시에 시작)
         let readyCount = 0;
         vids.forEach(v => {
-          v.dataset.ready = (v.readyState >= 2); // canplay or better
+          v.dataset.ready = (v.readyState >= 2);
           if (v.dataset.ready === "true" || v.dataset.ready === true) {
             readyCount++;
           } else {
-            // 아직 준비 안 된 경우 이벤트 리스너 붙임
             v.addEventListener('canplaythrough', () => {
               v.dataset.ready = true;
               const allReady = Array.from(vids).every(x => x.dataset.ready === true || x.dataset.ready === "true");
@@ -605,12 +593,15 @@ The synthesized video sequence shows consistent, high-quality visuals that refle
           }
         });
 
-        // 만약 두 개 모두 이미 준비 완료라면 즉시 동시에 실행
         if (readyCount === vids.length) {
           vids.forEach(v => { v.currentTime = 0; v.play().catch(()=>{}); });
         }
+
+        // 루프 resync 세팅 (한번만)
+        setupLoopResync(slideEl);
+
       } else {
-        // 비현재 슬라이드 → 정지 및 초기화
+        // 비현재 슬라이드 → 정지 & 초기화
         vids.forEach(v => {
           v.pause();
           v.currentTime = 0;
@@ -619,6 +610,7 @@ The synthesized video sequence shows consistent, high-quality visuals that refle
       }
     });
   }
+  
 
   carousels.forEach(carousel => {
     // 초기 1회 동기화 (처음 보이는 슬라이드 기준)

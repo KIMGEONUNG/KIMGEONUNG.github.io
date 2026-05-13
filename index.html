@@ -1,30 +1,57 @@
 ---
-layout: archive
-entries_layout: list
-author_profile: true
-classes: wide
-header: 
-  image: /assets/images/header.jpg
-  image_description: "unknown"
+layout: research_home
+description: "Geonung Kim is an integrated M.S. and Ph.D. student at POSTECH working on computer graphics, computer vision, and generative visual synthesis."
+permalink: /
 ---
 
-{% assign entries_layout = page.entries_layout | default: 'list' %}
-{% capture written_label %}'None'{% endcapture %}
+<nav class="research-nav" aria-label="Main navigation">
+  <a class="research-nav__brand" href="{{ '/' | relative_url }}">Home</a>
+  <div class="research-nav__links">
+    <a href="{{ '/assets/cv/cv_kimgeonung.pdf' | relative_url }}" target="_blank" rel="noopener">CV</a>
+    <a href="https://scholar.google.com/citations?user=UgL9yfwAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+    <a href="https://github.com/KIMGEONUNG" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/kimgeonung" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="{{ '/artworks/' | relative_url }}">Artworks</a>
+  </div>
+</nav>
 
-{% for collection in site.collections %}
-  {% unless collection.output == false or collection.label == "posts" %}
-    <section class="taxonomy__section">
-      {% capture label %}{{ collection.label }}{% endcapture %}
-      {% if label != written_label %}
-        <h2 id="{{ label | slugify }}" class="archive__subtitle">{{ label }}</h2>
-        {% capture written_label %}{{ label }}{% endcapture %}
-      {% endif %}
-      <div class="entries-{{ entries_layout }}">
-        {% for post in collection.docs %}
-          {% include archive-pub.html type=entries_layout %}
-        {% endfor %}
-      </div>
-      <a href="#page-title" class="back-to-top">{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }} &uarr;</a>
-    </section>
-  {% endunless %}
-{% endfor %}
+<section class="research-hero" aria-labelledby="profile-title">
+  <div class="research-hero__content">
+    <h1 class="research-hero__name" id="profile-title">Geonung Kim</h1>
+    <p class="research-hero__bio">
+      I am an Integrated M.S. &amp; Ph.D. student at POSTECH, researching as a member of the
+      <a href="http://cg.postech.ac.kr">Computer Graphics Lab</a> under the supervision of Prof.
+      <a href="https://www.scho.pe.kr">Sunghyun Cho</a>.
+    </p>
+    <p class="research-hero__bio">
+      My research interests lie at the intersection of <strong>computer graphics</strong> and
+      <strong>computer vision</strong>, with a focus on generative models for image/video synthesis,
+      3D scene generation, visual restoration, and efficient diffusion models.
+    </p>
+  </div>
+  <figure class="research-hero__portrait">
+    <img src="{{ site.author.avatar | relative_url }}" alt="Geonung Kim">
+  </figure>
+</section>
+
+<section class="research-section" aria-labelledby="news-title">
+  <h2 class="research-section__title" id="news-title">News</h2>
+  <ul class="research-news">
+    {% for item in site.data.news %}
+      <li class="research-news__item">
+        <div class="research-news__date">{{ item.date }}</div>
+        <div class="research-news__text">{{ item.text }}</div>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="research-section" aria-labelledby="publications-title">
+  <h2 class="research-section__title" id="publications-title">Publications</h2>
+  <div class="research-publications">
+    {% assign publications = site.Publications | sort: 'path' %}
+    {% for post in publications %}
+      {% include research-publication.html %}
+    {% endfor %}
+  </div>
+</section>

@@ -2,7 +2,11 @@
 main:
   - title: "CV"
     url: /assets/cv/cv_kimgeonung.pdf
-  # - title: "Posts"
-  #   url: /collection-archive/
+  - title: "Scholar"
+    url: https://scholar.google.com/citations?user=UgL9yfwAAAAJ&hl=en
+  - title: "GitHub"
+    url: https://github.com/KIMGEONUNG
+  - title: "LinkedIn"
+    url: https://www.linkedin.com/in/kimgeonung
   - title: "Artworks"
     url: /artworks/

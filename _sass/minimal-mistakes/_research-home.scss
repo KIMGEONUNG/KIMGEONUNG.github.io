@@ -1,0 +1,252 @@
+.layout--research-home {
+  color: #111827;
+  background: #ffffff;
+  font-family: "Google Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+
+  a {
+    color: #1c7ed6;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #5f3dc4;
+    text-decoration: underline;
+  }
+}
+
+#main.research-home {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 56px;
+}
+
+.research-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 0 28px;
+  font-size: 0.96rem;
+}
+
+.research-nav__brand {
+  color: #111827;
+  font-weight: 700;
+}
+
+.research-nav__links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+.research-nav__links a {
+  color: #374151;
+  font-weight: 500;
+}
+
+.research-section {
+  padding: 22px 0;
+}
+
+.research-section__title {
+  margin: 0 0 18px;
+  color: #111827;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.research-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  align-items: center;
+  gap: 36px;
+  padding: 18px 0 30px;
+}
+
+.research-hero__name {
+  margin: 0 0 18px;
+  color: #111827;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.research-hero__bio {
+  max-width: 620px;
+  margin: 0;
+  color: #1f2937;
+  font-size: 1.02rem;
+}
+
+.research-hero__bio + .research-hero__bio {
+  margin-top: 14px;
+}
+
+.research-hero__portrait {
+  width: 260px;
+  aspect-ratio: 3 / 4;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+}
+
+.research-hero__portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.research-news {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.research-news__item {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 18px;
+  color: #1f2937;
+}
+
+.research-news__date {
+  color: #111827;
+  font-weight: 700;
+}
+
+.research-news__text {
+  min-width: 0;
+}
+
+.research-publications {
+  display: grid;
+  gap: 28px;
+}
+
+.research-publication {
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.research-publication__media {
+  overflow: hidden;
+  border-radius: 6px;
+  background: #f3f4f6;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.14);
+}
+
+.research-publication__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.research-publication__title {
+  margin: -3px 0 7px;
+  color: #111827;
+  font-size: 1.16rem;
+  font-weight: 700;
+  line-height: 1.32;
+}
+
+.research-publication__authors,
+.research-publication__venue {
+  margin: 0 0 7px;
+  color: #374151;
+  font-size: 0.96rem;
+  line-height: 1.45;
+}
+
+.research-publication__authors strong {
+  color: #111827;
+}
+
+.research-publication__venue {
+  color: #4b5563;
+}
+
+.research-publication__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.research-publication__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  color: #ffffff !important;
+  background: #20242b;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.research-publication__link:hover {
+  background: #111827;
+  text-decoration: none !important;
+}
+
+@media screen and (max-width: 760px) {
+  #main.research-home {
+    padding: 0 18px 42px;
+  }
+
+  .research-nav {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 22px;
+  }
+
+  .research-nav__links {
+    justify-content: flex-start;
+  }
+
+  .research-hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 4px;
+  }
+
+  .research-hero__portrait {
+    grid-row: 1;
+    width: 280px;
+    max-width: 100%;
+  }
+
+  .research-hero__name {
+    font-size: 1.75rem;
+  }
+
+  .research-news__item {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .research-publication {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .research-publication__media {
+    max-width: 420px;
+  }
+}

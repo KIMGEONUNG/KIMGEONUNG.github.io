@@ -1,0 +1,46 @@
+{% assign title = post.title %}
+{% assign author = post.author %}
+{% assign publication = post.publication %}
+{% assign teaser = post.header.teaser %}
+{% assign fallback_page = post.header.page %}
+
+<article class="research-publication" id="{{ post.slug | default: title | slugify }}">
+  <div class="research-publication__media">
+    {% if fallback_page %}
+      <a href="{{ fallback_page }}" target="_blank" rel="noopener">
+    {% endif %}
+        <img src="{{ teaser | relative_url }}" alt="{{ title | strip_html | normalize_whitespace | escape }}">
+    {% if fallback_page %}
+      </a>
+    {% endif %}
+  </div>
+
+  <div class="research-publication__body">
+    <h3 class="research-publication__title">{{ title }}</h3>
+    <p class="research-publication__authors">{{ author }}</p>
+    <p class="research-publication__venue">{{ publication }}</p>
+
+    {% if post.links %}
+      <div class="research-publication__links" aria-label="Publication links">
+        {% for link in post.links %}
+          {% assign raw_url = link.url %}
+          {% assign is_external = false %}
+          {% if raw_url contains '://' %}
+            {% assign is_external = true %}
+          {% endif %}
+          <a class="research-publication__link" href="{% if is_external %}{{ raw_url }}{% else %}{{ raw_url | relative_url }}{% endif %}" target="_blank" rel="noopener">
+            {% if link.icon %}<i class="{{ link.icon }}" aria-hidden="true"></i>{% endif %}
+            <span>{{ link.label }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    {% elsif fallback_page %}
+      <div class="research-publication__links" aria-label="Publication links">
+        <a class="research-publication__link" href="{{ fallback_page }}" target="_blank" rel="noopener">
+          <i class="fas fa-file-alt" aria-hidden="true"></i>
+          <span>Page</span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</article>
